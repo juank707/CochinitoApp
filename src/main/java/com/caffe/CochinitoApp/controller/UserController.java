@@ -3,6 +3,7 @@ package com.caffe.CochinitoApp.controller;
 import com.caffe.CochinitoApp.core.entity.DAOUser;
 import com.caffe.CochinitoApp.resource.UserResource;
 import com.caffe.CochinitoApp.service.CustomUserDetailsService;
+import org.hibernate.annotations.Parameter;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -33,7 +34,11 @@ public class UserController {
 
         return new PageImpl<>(resources, pageable, resources.size());
     }
-
+    @GetMapping(value = "/users/{userId}")
+    public UserResource getUserById(
+            @PathVariable(name = "userId") Long userId) {
+        return convertToResource(userDetailsService.getUserById(userId));
+    }
     @PutMapping("/users/{userId}")
     public UserResource updateUser(@PathVariable(name = "userId") Long userId, @Valid @RequestBody UserResource resource) {
         DAOUser user = convertToEntity(resource);
