@@ -1,5 +1,6 @@
 package com.caffe.CochinitoApp.configuration;
 
+import com.caffe.CochinitoApp.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -47,6 +48,12 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests().antMatchers("/helloadmin").hasRole("ADMIN")
                 .antMatchers("/hellouser").hasAnyRole("USER","ADMIN")
+                .and()
+                .authorizeRequests()
+                .antMatchers("/api/users").permitAll()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/api/users/*").permitAll()
                 .antMatchers("/authenticate", "/register").permitAll().anyRequest().authenticated()
                 .and().exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).
                 and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).
