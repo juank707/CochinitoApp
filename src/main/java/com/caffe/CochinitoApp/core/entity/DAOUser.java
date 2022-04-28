@@ -52,5 +52,7 @@ public class DAOUser {
     private String role;
 
 
+
+
 }
 
