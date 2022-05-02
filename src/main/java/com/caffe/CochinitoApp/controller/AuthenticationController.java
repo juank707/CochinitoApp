@@ -1,6 +1,6 @@
 package com.caffe.CochinitoApp.controller;
 
-import com.caffe.CochinitoApp.configuration.CustomUserDetailsService;
+import com.caffe.CochinitoApp.service.CustomUserDetailsService;
 import com.caffe.CochinitoApp.resource.AuthenticationRequest;
 import com.caffe.CochinitoApp.resource.AuthenticationResponse;
 import com.caffe.CochinitoApp.resource.UserResource;
@@ -14,7 +14,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -34,7 +33,7 @@ public class AuthenticationController {
             throws Exception {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                    authenticationRequest.getUsername(), authenticationRequest.getPassword()));
+                    authenticationRequest.getUserName(), authenticationRequest.getPassword()));
         } catch (DisabledException e) {
             throw new Exception("USER_DISABLED", e);
         }
@@ -42,7 +41,7 @@ public class AuthenticationController {
             throw new Exception("INVALID_CREDENTIALS", e);
         }
 
-        UserDetails userdetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+        UserDetails userdetails = userDetailsService.loadUserByUsername(authenticationRequest.getUserName());
         String token = jwtUtil.generateToken(userdetails);
         return ResponseEntity.ok(new AuthenticationResponse(token));
     }
