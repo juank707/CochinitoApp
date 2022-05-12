@@ -1,2 +1,6 @@
-runtime: java11
-instance_class: F2
+steps:
+  - name: 'gcr.io/cloud-builders/mvn'
+    args: ['install']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '--tag=gcr.io/$juan-342717/spring-boot', '.']
+images: ['gcr.io/juan-342717/spring-boot']
