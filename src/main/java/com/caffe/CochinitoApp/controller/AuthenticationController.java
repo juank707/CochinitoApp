@@ -1,6 +1,6 @@
 package com.caffe.CochinitoApp.controller;
 
-import com.caffe.CochinitoApp.configuration.CustomUserDetailsService;
+import com.caffe.CochinitoApp.service.CustomUserDetailsService;
 import com.caffe.CochinitoApp.resource.AuthenticationRequest;
 import com.caffe.CochinitoApp.resource.AuthenticationResponse;
 import com.caffe.CochinitoApp.resource.UserResource;
@@ -12,10 +12,14 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.awt.*;
+
+@CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 public class AuthenticationController {
     @Autowired
@@ -42,6 +46,7 @@ public class AuthenticationController {
         }
 
         UserDetails userdetails = userDetailsService.loadUserByUsername(authenticationRequest.getUserName());
+        System.out.println(authenticationRequest.getUserName());
         String token = jwtUtil.generateToken(userdetails);
         return ResponseEntity.ok(new AuthenticationResponse(token));
     }
