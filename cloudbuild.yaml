@@ -2,11 +2,13 @@ steps:
   - name: 'gcr.io/cloud-builders/mvn'
     args: ['install']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '--tag=us-central1-docker.pkg.dev/juan-342717/quickstart-docker-repo/app-image', '.', 'run', 'us-east4-docker.pkg.dev/daniel-346414/dockercloud/app-image]
+    args: ['build', '--tag=us-central1-docker.pkg.dev/juan-342717/quickstart-docker-repo/app-image', '.'
 
 images: ['us-central1-docker.pkg.dev/juan-342717/quickstart-docker-repo/app-image']
-
-
-    
 options:
   logging: CLOUD_LOGGING_ONLY
+steps1:
+  - name: 'us-east4-docker.pkg.dev/daniel-346414/dockercloud/app-image'
+    args: ['run', 'us-east4-docker.pkg.dev/daniel-346414/dockercloud/app-image']
+    
+
