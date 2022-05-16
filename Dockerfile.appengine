@@ -1,4 +1,4 @@
-ARG PROJECT_ID="daniel-346414"
+ARG PROJECT_ID="juan-342717"
 FROM gcr.io/cloud-builders/mvn:latest
 
 # install python
