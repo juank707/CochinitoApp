@@ -7,7 +7,7 @@ steps:
 images: ['us-central1-docker.pkg.dev/juan-342717/quickstart-docker-repo/app-image']
 options:
   logging: CLOUD_LOGGING_ONLY
-steps1:
+steps:
   - name: 'us-east4-docker.pkg.dev/daniel-346414/dockercloud/app-image'
     args: ['run', 'us-east4-docker.pkg.dev/daniel-346414/dockercloud/app-image']
     
