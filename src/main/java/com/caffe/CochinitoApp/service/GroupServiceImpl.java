@@ -58,7 +58,7 @@ public class GroupServiceImpl implements GroupService {
 
 
     }
-
+    //asignar  agrupo
     @Override
     public ResponseEntity<?> deleteGroup(Long groupId, Long userId) {
        Group group= groupRepository.findById(userId).orElseThrow(()-> new ResourceNotFoundException("Group","Id",groupId));

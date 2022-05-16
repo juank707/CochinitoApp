@@ -1,5 +1,5 @@
-ARG PROJECT_ID="cloud-builders"
-FROM gcr.io/$juan-342717/mvn:latest
+ARG PROJECT_ID="daniel-346414"
+FROM gcr.io/cloud-builders/mvn:latest
 
 # install python
 RUN apt-get update -y && apt-get install python3 -y
