@@ -5,9 +5,6 @@ steps:
     args: ['build', '--tag=us-central1-docker.pkg.dev/juan-342717/quickstart-docker-repo/app-image', '.']
 
 images: ['us-central1-docker.pkg.dev/juan-342717/quickstart-docker-repo/app-image']
-
-  - name: 'us-east4-docker.pkg.dev/daniel-346414/dockercloud/app-image'
     args: ['run', 'us-east4-docker.pkg.dev/daniel-346414/dockercloud/app-image']
-
 options:
   logging: CLOUD_LOGGING_ONLY
